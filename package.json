@@ -1,29 +1,17 @@
 {
-	"name": "potato",
+	"name": "potato.js",
 	"description": "A set of tools to ease baked.js and prismatic usage",
 	"version": "0.0.1",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/smithandrobot/potato.js"
 	},
-	"author": {
-		"name": "Jonathan Bennett",
-		"email": "jonathan@smithandrobot.com",
-		"url": "http://smithandrobot.com"
-	},
+	"author": "Jonathan Bennett",
 	"keyworks": [],
 	"files": [ "index.js", "src" ],
-	"dependencies": {
-
+	"dependencies": {},
+	"devDependencies": {},
+	"engines": {
+		"node": "*",
 	},
-	"devDependencies": {
-
-	},
-	"engines": [
-		"node >= 0.5.0"
-	],
-	"license": "",
-	"bugs": {
-		"url": "https://github.com/smithandrobot/potato.js/issues"
-	}
 }
