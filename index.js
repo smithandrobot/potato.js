@@ -61,28 +61,33 @@ var createContainerWrappers = function(containers, loadedDocuments) {
 var createFragmentWrapper = function(path, type) {
   var mainType = type.split('.').slice(0)[0];
   var callingMethod = 'get'+ mainType;
+  var resolvedFragment = null;
 
   return function() {
-    var method = this.container[callingMethod];
-    var fragment = method.call(this.container, path);
+    if (resolvedFragment == null) {
+      var method = this.container[callingMethod];
+      var fragment = method.call(this.container, path);
 
-    if (mainType === 'Group') { // return wrapped fragments
-      fragment = fragment? fragment.toArray() : [];
+      if (mainType === 'Group') { // return wrapped fragments
+        fragment = fragment? fragment.toArray() : [];
 
-      if (fragment.length) {
-        fragment = createContainerWrappers(fragment, this.container.loadedDocuments);
+        if (fragment.length) {
+          fragment = createContainerWrappers(fragment, this.container.loadedDocuments);
+        }
       }
+
+      if (mainType === 'Link') { // try to return wrapped object
+        var id = fragment.document.id;
+
+        if (this.loadedDocuments[id]) {
+          fragment = wrapDocument(this.loadedDocuments[id]);
+        }
+      }
+
+      resolvedFragment = fragment;
     }
 
-    if (mainType === 'Link') { // try to return wrapped object
-      var id = fragment.document.id;
-
-      if (this.loadedDocuments[id]) {
-        fragment = wrapDocument(this.loadedDocuments[id]);
-      }
-    }
-
-    return fragment;
+    return resolvedFragment;
   };
 };
 
