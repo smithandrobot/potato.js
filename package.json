@@ -12,7 +12,7 @@
 		"url": "http://smithandrobot.com"
 	},
 	"keyworks": [],
-	"files": [ "src" ],
+	"files": [ "index.js", "src" ],
 	"dependencies": {
 
 	},
