@@ -64,7 +64,7 @@ var createFragmentWrapper = function(path, type) {
   var resolvedFragment = null;
 
   return function() {
-    if (resolvedFragment == null) {
+    if (resolvedFragment == null || true) { // TODO: fix caching bug
       var method = this.container[callingMethod];
       var fragment = method.call(this.container, path);
 
