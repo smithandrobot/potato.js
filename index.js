@@ -5,7 +5,7 @@ var wrapDocument = function(doc) {
 
   if (!wrapperFunc) {
     wrapperFunc = createContainerWrapper(doc);
-    documentWrappers[doc.type] = wrapperFunc;
+    // documentWrappers[doc.type] = wrapperFunc; // TODO: Fix caching.
   }
 
   return new wrapperFunc(doc);
